@@ -34,12 +34,19 @@
             font-family: "Barlow", sans-serif;
             font-size:2.25rem;
             font-weight: 200;
+            margin-bottom: 1rem;
+            
         }
 
         h3{
             font-family: "Barlow", sans-serif;
             font-size:1.75rem;
             font-weight: 200;
+        }
+
+        hr{
+            margin:0;
+            padding:0;
         }
 
         #page_links a
@@ -53,6 +60,8 @@
             margin-left: 10rem;
             margin-right: 10rem;
         }
+
+        /* #region AboutMe */
 
         #about_me .content
         {
@@ -81,15 +90,28 @@
             font-size: 1.5rem;
             align-items: center;
         }
+        /* #endregion */
+        
+
+        /* #region ProjectSlides */
+        #academic_projects .content, #personal_projects .content
+        {
+            display:flex;
+            flex-direction: row;
+            flex-wrap:wrap;
+            justify-content: space-between;
+        }
 
         .project_description
         {
             width:30rem
         }
+        /* #endregion */
 
         img{
             max-width: 100%;
             height: auto;
+            margin-top:20px;
         }
 
         :link{
