@@ -1,0 +1,50 @@
+body {
+    display: flex;
+    background-color: darkgray;
+    flex-direction: column;
+    max-width: 1080px;
+    margin: 0 auto;
+}
+
+canvas {
+    margin: 0;
+    padding: 0;
+}
+
+#stats {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    max-width: 1080px;
+    margin: 0;
+    padding: 0;
+}
+
+#controls {
+    display:flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+#controls div {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    margin-top: .5rem;
+}
+
+#controls .slider {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#controls input[type="number"] {
+    max-width: 3rem;
+    max-height: 1rem;
+    margin-left: .3rem;
+}

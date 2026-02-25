@@ -38,6 +38,7 @@
            font-family: "Barlow", sans-serif;
            font-size: 2.25rem;
            font-weight: 200;
+           margin-top: 4rem;
            margin-bottom: 1rem;
 
        }
@@ -50,8 +51,11 @@
 
        p {
            font-family: Arial, Helvetica, sans-serif;
-           font-size: 1.15rem;
+           font-size: 1.5rem;
            font-weight: 100;
+           margin: 0;
+           margin-right: 4rem;
+           margin-bottom: 1rem;
        }
 
        hr {
@@ -64,72 +68,86 @@
            padding-right: .5rem;
        }
 
-       /* #region AboutMe */
-
-       #about_me .content {
-           display: grid;
-           width: 100%;
-           grid-template-rows: auto;
-           grid-template-columns: 3fr 1fr;
-           gap: 5rem;
-           padding: 0%;
-           margin: 0%;
-           font-size: 1.25rem;
-       }
-
-       #about_me #portrait_links {
-           display: flex;
-           flex-direction: column;
-       }
-
-       #about_me_links {
+       .side-by-side {
            display: flex;
            flex-direction: row;
-           justify-content: space-around;
-           margin-top: 1rem;
-           font-size: 1.5rem;
-           align-items: center;
-       }
-
-       /* #endregion */
-
-       img {
-           max-width: 100%;
-           height: auto;
-           margin-top: 20px;
-       }
-
-       /* #region ProjectSlides */
-       .content,
-       .content {
-           display: flex;
-           flex-direction: row;
-           flex-wrap: wrap;
            justify-content: space-between;
        }
 
-       #academic_projects h3,
-       #personal_projects h3 {
-           margin: 2rem;
-           margin-left: 0;
-           margin-bottom: 0;
+       .content {
+           display: flex;
+           flex-direction: row;
+           justify-content: space-between;
+       }
+
+       #intro {
+           margin-top: 1rem;
+       }
+
+       #intro img {
+           margin-left: 10rem;
+           max-width: 20rem;
+           border-radius: 3.4rem;
+       }
+
+       img {
+           display: block;
+           max-width: 100%;
+           height: auto;
+       }
+
+       #structure img {
+           max-height: 50rem;
+           max-width: auto;
+           height: fit-content;
+           margin-top: 1rem;
+       }
+
+       /* WIREFRAMES SECTION */
+
+       #wireframes {
+           display: flex;
+           flex-direction: column;
+           margin: 0;
+       }
+
+       #wireframes img {
+           /* max-width: 10rem; */
+           margin: 0;
            padding: 0;
        }
 
-       #academic_projects img,
-       #personal_projects img {
-           margin-top: 0.5rem;
-           box-shadow: 0px 10px 20px 0px rgb(21, 21, 21);
-           max-width: 100%;
-           max-height: fit-content;
+       #wireframes .side-by-side {
+           justify-content: space-between;
+           margin-top: 4rem;
        }
 
-       /* #endregion */
+       #wireframes .side-by-side img {
+           max-width: 15rem;
+       }
 
-       img {
-           max-width: 100%;
-           height: auto;
-           margin-top: 20px;
+       /* FINAL DESIGN SECTION */
+
+       #final-designs {
+           display: flex;
+           flex-direction: column;
+           justify-content: space-between;
+           margin-top: 0;
+       }
+
+       #final-designs .side-by-side  div:not(#create-screens) {
+           margin-top: 4rem;
+           padding:10rem;
+       }
+
+       #final-designs img {
+           margin: .5rem 0 0 0;
+           max-height: 40rem;
+           max-width: fit-content;
+       }
+
+       footer {
+           margin: 3rem;
        }
 
        :link {
@@ -144,10 +162,6 @@
            main {
                margin: 0;
            }
-
-           .project_description {
-               width: 80%
-           }
        }
 
        @media only screen and (min-width: 1200px) {
@@ -155,9 +169,5 @@
                margin-top: 0;
                margin-left: 15rem;
                margin-right: 15rem;
-           }
-
-           .project_description {
-               width: 45%
            }
        }
