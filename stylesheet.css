@@ -37,7 +37,7 @@
            font-family: "Barlow", sans-serif;
            font-size: 2.25rem;
            font-weight: 200;
-           margin-bottom: 1rem;
+           margin-bottom: 0rem;
 
        }
 
@@ -45,6 +45,7 @@
            font-family: "Barlow", sans-serif;
            font-size: 1.75rem;
            font-weight: 200;
+           margin-bottom: .5rem;
        }
 
        p {
@@ -95,7 +96,6 @@
        img {
            max-width: 100%;
            height: auto;
-           margin-top: 20px;
        }
 
        /* #region ProjectSlides */
@@ -128,7 +128,6 @@
        img {
            max-width: 100%;
            height: auto;
-           margin-top: 20px;
        }
 
        :link {
