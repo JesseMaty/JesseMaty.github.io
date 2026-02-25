@@ -30,7 +30,6 @@
 
        h1 {
            font-family: 'Barlow', sans-serif;
-           font-size: 3rem;
            font-weight: 200;
        }
 
@@ -140,13 +139,17 @@
            color: lightslategray;
        }
 
-       @media only screen and (min-width: 600px) {
+       @media only screen and (min-width: 400px) {
            main {
-               margin: 0;
+               margin: 1.75rem;
            }
 
            .project_description {
                width: 80%
+           }
+
+           h1 {
+               font-size: 1rem;
            }
        }
 
@@ -159,5 +162,9 @@
 
            .project_description {
                width: 45%
+           }
+
+           h1 {
+               font-size: 3rem;
            }
        }
