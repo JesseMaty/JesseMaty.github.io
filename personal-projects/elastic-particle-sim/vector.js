@@ -1,61 +1,52 @@
-export class Vector2{
+export class Vector2 {
     x = 0;
     y = 0;
-    constructor (x,y){
+    constructor(x, y) {
         this.x = x;
         this.y = y;
     }
 
-    add(other)
-    {
+    add(other) {
         return new Vector2(this.x + other.x, this.y + other.y);
     }
 
-    sub(other)
-    {
+    sub(other) {
         return new Vector2(this.x - other.x, this.y - other.y);
     }
 
-    mult(s)
-    {
+    mult(s) {
         return new Vector2(this.x * s, this.y * s)
     }
 
-    div(s)
-    {
-        if(s === 0)
-            return new Vector2(0,0);
-        return this.mult(1/s);
+    div(s) {
+        if (s === 0)
+            return new Vector2(0, 0);
+        return this.mult(1 / s);
     }
 
-    static dot(a, b)
-    {
+    static dot(a, b) {
         return a.x * b.x + a.y * b.y;
     }
 
-    mag()
-    {
+    mag() {
         return Math.sqrt(this.x * this.x + this.y * this.y);
     }
 
-    normalize()
-    {
-        if (this.mag != 0)
-        return this.div(this.mag());
-        return new Vector2(0,0);
+    normalize() {
+        if (this.mag() != 0)
+            return this.div(this.mag());
+        return new Vector2(0, 0);
     }
 
-    copy()
-    {
+    copy() {
         return new Vector2(this.x, this.y);
     }
 
-    static clampMag(a, max)
-    {
+    static clampMag(a, max) {
         let mag = a.mag();
-        if(mag >= max)
-        {
-            return a.normalize().mult(max);  
+        if (mag >= max) {
+            return a.normalize().mult(max);
         }
+        return a.copy();
     }
 }

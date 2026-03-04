@@ -1,10 +1,12 @@
-import { Vector2 } from "./vector.js";
-import { Node } from "./node.js";
+import { Vector2 } from "./Vector.js";
+import { AABB } from "./AABB.js";
+import { QuadTree } from "./QuadTree.js";
 
 let width = 1080;
 let height = 720;
 const particles = [];
 let particleRadius = 10;
+let maxParticleRadius = 10;
 let gravity = 0;
 let bounciness = 1;
 let spawnRate = 1;
@@ -22,8 +24,8 @@ let grabStrength = 1;
 let grabSize = 40;
 
 // Quad Tree
-let showQTBounds = true;
-//const parentNode = new Node({ l: 0, r: width, t: 0, b: height });
+let qt = new QuadTree(new AABB(new Vector2(width / 2, height / 2), new Vector2(width / 2, height / 2)))
+let showQTBounds = false;
 
 window.onload = init;
 
@@ -47,12 +49,12 @@ function init() {
         mouseState = e.button;
     });
     canvas.addEventListener("mouseup", () => { isMouseDown = false; clock = spawnRate; grabbedParticle = null })
-    canvas.addEventListener("mousemove", (e) => { mousePos = getMousePos(canvas, e) })
+    canvas.addEventListener("mousemove", (e) => { prevMousePos = mousePos; mousePos = getMousePos(canvas, e) })
 
     // Color Screen
     ctx.fillStyle = "black";
     ctx.fillRect(0, 0, width, height);
-    update(0);
+    requestAnimationFrame(update);
 }
 
 let lastTs = 0;
@@ -92,9 +94,9 @@ function update(ts) {
                 let header = dV.sub(grabbedParticle.velocity);
 
                 grabbedParticle.velocity = grabbedParticle.velocity.add(header.mult(grabStrength));
+                prevMousePos = mousePos;
             }
         }
-        prevMousePos = mousePos;
     }
 
     updateParticles(deltaTime);
@@ -102,8 +104,7 @@ function update(ts) {
 
     // Draws option quad tree bounds
     if (showQTBounds) {
-        ctx.strokeStyle = "red";
-        //ctx.strokeRect()
+        qt.draw(ctx);
     }
 
     // Update Display Content
@@ -115,11 +116,15 @@ function update(ts) {
         partCount.textContent = parseInt(particles.length);
         displayClock -= displayUpdateFreq;
     }
+    qt.clear();
+    particles.forEach(p => {qt.insert(p)});
+
 
     requestAnimationFrame(update);
 }
 
 function createParticle(pos = new Vector2(0, 0), velocity = new Vector2(0, 0), r = 10, color = "red") {
+    if(particleRadius > maxParticleRadius) maxParticleRadius = particleRadius;
     let mass = r * r * 10;
     let p = { pos, velocity, r, mass, color }
     particles.push(p);
@@ -156,16 +161,36 @@ function getParticlesNearPos(pos, dist) {
 
 function updateParticles(deltaTime) {
     totalKE = 0;
-    checkCollisions(deltaTime);
+
+    // Go through each leaf in quad tree and check collisions
+    const leafCollisions = (leaf, root = leaf) => {
+        // If children exist
+        if (leaf.northWest !== null) {
+            let hd = leaf.northWest.bounds.halfDimension;
+            let scaledHD = new Vector2(hd.x + maxParticleRadius, hd.y + maxParticleRadius);
+            checkCollisions(leaf.queryRange(new AABB(leaf.northWest.bounds.center, scaledHD)));
+            leafCollisions(leaf.northWest, root);
+            checkCollisions(leaf.queryRange(new AABB(leaf.northEast.bounds.center, scaledHD)));
+            leafCollisions(leaf.northEast, root);
+            checkCollisions(leaf.queryRange(new AABB(leaf.southWest.bounds.center, scaledHD)));
+            leafCollisions(leaf.southWest, root);
+            checkCollisions(leaf.queryRange(new AABB(leaf.southEast.bounds.center, scaledHD)));
+            leafCollisions(leaf.southEast, root);
+        }
+    }
+
+    leafCollisions(qt);
+
     particles.forEach(p => {
         // Check for small velocities
-        if (p.velocity.length <= 0.1)
+        if (p.velocity.mag() <= 0.1)
             p.velocity = new Vector2(0, 0);
 
         p.pos.x += p.velocity.x * deltaTime * 100;
         p.pos.y += p.velocity.y * deltaTime * 100;
 
         edgeCollision(p);
+
         // Apply Gravity
         if (p.pos.y < height - p.r)
             p.velocity.y += gravity * deltaTime;
@@ -199,8 +224,8 @@ function edgeCollision(p) {
     }
 }
 
-function checkCollisions(deltaTime) {
-    for (let count = 0; count < 10; count++) {
+function checkCollisions(particles) {
+    for (let count = 0; count < 1; count++) {
         for (let i = 0; i < particles.length; i++) {
             for (let j = i + 1; j < particles.length; j++) {
                 const a = particles[i];
@@ -233,6 +258,7 @@ function checkCollisions(deltaTime) {
             }
         }
     }
+    return particles || [];
 }
 
 function getMousePos(canvas, event) {
@@ -248,13 +274,13 @@ function setupHTML() {
 
 
     // Set up controls
-    const bounceInput = document.querySelector("#bounce-input");
-    const bounceOutput = document.querySelector("#bounce-output");
+
     const grabStrengthInput = document.querySelector("#grab-strength-input");
     const grabStrengthOutput = document.querySelector("#grab-strength-output");
     const gravityInput = document.querySelector("#gravity-input");
     const radiusInput = document.querySelector("#radius-input");
     const spawnrateInput = document.querySelector("#spawn-rate-input");
+    const qtInput = document.querySelector('#qt-input');
 
     gravityInput.value = gravity;
     radiusInput.value = particleRadius;
@@ -262,11 +288,8 @@ function setupHTML() {
     grabStrengthInput.value = grabStrength;
     grabStrengthOutput.value = grabStrength;
 
-    bounceInput.addEventListener("change", () => {
-        bounciness = parseFloat(bounceInput.value);
-        bounceOutput.textContent = bounciness.toFixed(2);
-    })
-
+    qtInput.checked = showQTBounds;
+    
     grabStrengthInput.addEventListener("change", () => {
         grabStrength = parseFloat(grabStrengthInput.value);
         grabStrengthOutput.textContent = grabStrength.toFixed(2);
@@ -283,4 +306,6 @@ function setupHTML() {
     spawnrateInput.addEventListener("change", () => {
         spawnRate = parseFloat(spawnrateInput.value);
     })
+
+    qtInput.addEventListener('change', () => showQTBounds = !showQTBounds);
 }
