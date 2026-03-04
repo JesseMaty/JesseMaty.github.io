@@ -179,6 +179,7 @@ function updateParticles(deltaTime) {
         }
     }
 
+    checkCollisions(qt.particles);
     leafCollisions(qt);
 
     particles.forEach(p => {
