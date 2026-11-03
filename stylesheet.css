@@ -74,7 +74,8 @@
 
        .project_description:hover {
            transform: scale(1.05, 1.05);
-           background-color: rgb(65, 65, 65);;
+           background-color: rgb(65, 65, 65);
+           ;
 
        }
 
@@ -144,12 +145,20 @@
            height: auto;
        }
 
-       :link {
+       header :link {
            color: white;
        }
 
-       :visited {
+       header :visited {
            color: lightslategray;
+       }
+
+       .project_description :link {
+           color: white;
+       }
+
+       .project_description :visited {
+           color: white;
        }
 
        @media only screen and (min-width: 400px) {
