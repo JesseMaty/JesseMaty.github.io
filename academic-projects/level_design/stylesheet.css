@@ -1,0 +1,121 @@
+       body {
+           background-color: #2d2d2d;
+           color: rgb(203, 203, 203);
+           margin: 0;
+           padding: 0;
+           scroll-padding-top: 1rem;
+       }
+
+       header {
+           background-color: hsl(0, 0%, 9%);
+           margin-top: 0;
+           padding-left: 2rem;
+           padding-right: 2rem;
+           position: sticky;
+           top: 0;
+           left: 0;
+           right: 0;
+           height: 5rem;
+           z-index: 100;
+           display: flex;
+           flex-direction: row;
+           justify-content: space-between;
+           align-items: center;
+       }
+
+       section {
+           scroll-margin-top: 80px;
+           /* Offset the target by the header height */
+       }
+
+       h1 {
+           font-family: 'Barlow', sans-serif;
+           font-size: 3rem;
+           font-weight: 200;
+       }
+
+       h2 {
+           font-family: "Barlow", sans-serif;
+           font-size: 2.25rem;
+           font-weight: 200;
+           margin-bottom: 1rem;
+
+       }
+
+       h3 {
+           font-family: "Barlow", sans-serif;
+           font-size: 1.75rem;
+           font-weight: 200;
+       }
+
+       p {
+           font-family: Arial, Helvetica, sans-serif;
+           font-size: 1.15rem;
+           font-weight: 100;
+       }
+
+       hr {
+           margin: 0;
+           padding: 0;
+       }
+
+       #page_links a {
+           padding-left: .5rem;
+           padding-right: .5rem;
+       }
+
+       .content {
+           display: flex;
+           flex-direction: row;
+           flex-wrap: nowrap;
+           justify-content: space-between;
+       }
+
+       img {
+           display: block;
+           max-width: 100%;
+           height: auto;
+           margin-top: 20px;
+       }
+
+       figure {
+           display: flex;
+           flex-direction: column;
+           margin-top:0;
+           padding:2rem;
+           box-shadow: 0px 10px 20px 0px rgb(21, 21, 21);
+       }
+
+       figcaption {
+           margin-top: 1rem;
+       }
+
+       footer {
+           margin: 3rem;
+       }
+
+       :link {
+           color: white;
+       }
+
+       :visited {
+           color: lightslategray;
+       }
+
+       @media only screen and (min-width: 600px) {
+           main {
+               margin: 0;
+           }
+
+           .project_description {
+               width: 80%
+           }
+       }
+
+       @media only screen and (min-width: 1200px) {
+           main {
+               margin-top: 0;
+               margin-left: 15rem;
+               margin-right: 15rem;
+           }
+       }

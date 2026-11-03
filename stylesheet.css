@@ -59,9 +59,23 @@
            padding: 0;
        }
 
-       #page_links a {
-           padding-left: .5rem;
-           padding-right: .5rem;
+       a {
+           padding: 0;
+       }
+
+       .project_description {
+           margin-top: 2rem;
+           padding: 0rem 1rem;
+           border: .2rem solid rgb(20, 20, 20);
+           box-shadow: black 0rem 1rem 1rem .2rem;
+           border-radius: 1rem;
+           transition-duration: 0.2s;
+       }
+
+       .project_description:hover {
+           transform: scale(1.05, 1.05);
+           background-color: rgb(65, 65, 65);;
+
        }
 
        /* #region AboutMe */
