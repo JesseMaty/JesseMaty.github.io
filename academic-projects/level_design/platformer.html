@@ -19,73 +19,93 @@
         <h1>JESSE MATYASOVSZKY</h1>
 
         <div id="page_links">
-            <a href="../../index.html#about_me">About Me</a>
-            <a href="../../index.html/#academic_projects">Academic Projects</a>
-            <a href="#personal_projects">Personal Projects</a>
+            <a href="../../#about_me">About Me</a>
+            <a href="../../#academic_projects">Academic Projects</a>
+            <a href="../../#personal_projects">Personal Projects</a>
         </div>
     </header>
 
     <main>
         <h1>Battleblock Theater Level</h1>
         <hr>
-        <p>Gooze Gardens was a semester-long project developed during my third-year at the
+        <p>I developed a 2D platformer level over 4 weeks during my third-year at the
             <a href="https://www.rit.edu/study/game-design-and-development-bs" target="_blank" rel="noopener">Rochester
                 Institute of Technology<a>
-                    from October 2025 - December 2025. I worked as a Game Designer in a team of 5 people for a period of
-                    six, two-week long sprints. During this time, I developed and improved skills pertaining to AGILE
-                    development, rapid iteration, and Unity/C#.
+                    I worked as the level designer, planning the layout, structure, and flow of the level utilizing
+                    BattleBlock Theater's Level Editor.
         </p>
         <iframe width="560" height="315" src="https://www.youtube.com/embed/50THIhyftgo?si=QrGGJmwi7POAmApO"
             title="YouTube video player" frameborder="0"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
             referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-        <h2>Breeding System</h2>
+        <h2>Level Description</h2>
         <p>
-            The first system I designed and developed was the slime breeding system. Originally, the goal was to have
-            slimes autonomously reproduce. The hope was that by having the slimes behave on their own, the player would
-            feel as though they were truly "alive". However, towards the end of the second sprint we realized we wanted
-            to pivot the focus of the game to be more resource-management esque. In order to give the player more agency
-            and feel like they are the ones running their farm, I introduced player-sponsored breeding. With this
-            system, players had a lot more control over what types of slimes live on their farm, and how many of each
-            type.
+            This level is designed to introduce players to bridges and boulder blocks through puzzles and timing
+            challenges. This is done through a three-act structure. First, players are introduced to the new blocks with
+            a gap that can only be traversed with a bridge block. A boulder is nearby to signify it can be used to keep
+            the bridge on. The second act introduces more difficult boulder/bridge puzzles, along with intermediate
+            timing challenges to increase tension. This act climaxes with the most difficult challenge of the level, a
+            timing challenge where a player must carry a boulder over several conveyor belts while avoiding lasers and
+            falling. If the player dies or the boulder is dropped, it is carried back to the beginning of the challenge
+            area. The final act involves a bridge blocking the path to the exit, with a grenade enemy being the one to
+            keep the bridge active. This challenge demonstrates how bridges can be obstacles, and how enemies can be
+            used to keep bridges active. After that, the exit can be calmly entered. Overall, this level is designed to
+            introduce basic bridge mechanics, all while maintaining tension through timing challenges and intermediate
+            puzzles.
         </p>
-        <img src="images/breeding_screen.png">
 
-        <h2>Emotional Traits and Species</h2>
-        <p>
-            Originally, Gooze Gardens was a simulation game focused on discovering unique slimes that mutate and
-            evolve as they reproduce. To faciilitate this, slimes initialyl had genes and traits that affected their
-            appearance and behaviors. However with the game pivoting to focus on resource management, we decided to
-            change how these mechanics worked. Instead of genes and traits, we implemented a species system and
-            emotional traits. Different species drop different items, which then can be combined with other species
-            to discover entirely new species of slimes. This brought a sense of progress to the game and gave the
-            players something to strive for.
-        </p>
-        <figure>
-            <img src="images/species_planning.png">
-            <figcaption>
-                Species Tree
-            </figcaption>
-        </figure>
-        <p>
-            Emotional traits affected a slime's personality and behaviors, all
-            while remaining seperate from the species. With this system, players are able to optimize their species
-            drop-rates by selectively breeding slimes with positive emotional traits.
-        </p>
-        <figure>
-            <img src="images/Emotional_Spectrum.png">
-            <figcaption>
-                Emotional Trait Wheel
-            </figcaption>
-        </figure>
+        <h3>Design Choices</h3>
+        <p>For this level, I wanted the players to keep awareness of their surroundings at all times, utilizing the
+            environment to solve puzzles. To achieve this, I designed several spatial puzzles and timing challenges
+            using the boulder block, light block, and laser block.
 
-        <h2>Building System</h2>
-        <p>
-            The last system I designed and developed was the building system. This system allows players to expand
-            their
-            farm, place fences to seperate slimes, and remove previously added structures.
+        <h3>Level Implementation</h3>
+        <p>When designing the level, I created four distint segments:
+            <ol style="display:flex;flex-direction: row;justify-content:space-evenly;">
+                <li style="margin-right: 2rem;"><b>Boulder and Bridge Introduction</b></li>
+                <li style="margin-right: 2rem;"><b>Bubblegum Drop </b><img src="images/bbt_bubblegum_drop.png" style="max-height: 40rem;"></li>
+                <li style="margin-right: 2rem;"><b>Conveyor Belt Run </b><img src="images/bbt_conveyor_belt_run.png" style="max-height: 40rem;"></li>
+                <li style="margin-right: 2rem;"><b>Enemy Blocking Path</b></li>
+            </ol>
         </p>
-        <img src="images/build_mode.png">
+
+        <h2>Event List</h2>
+        <ol>
+            <li>First Act - Introduce players to the bridge block and boulders</li>
+            <li>Second Act- Expose player to intermediate timing challenges and puzzles</li>
+            <li>Third Act - Enemy guards and blocks the path to the exit with a bridge</li>
+        </ol>
+
+        <h3>Gameplay Beats</h3>
+        <ol>
+            <li> bridge puzzle to introduce bridges and boulders</li>
+            <li>Beginner collectible timing challenge</li>
+            <li>Bubblegum block and laser drop challenge</li>
+            <li>Hidden Yarn</li>
+            <li>Conveyor belt and rock parkour to bridge</li>
+            <li>Path blocked by grenade enemy on bridge block</li>
+        </ol>
+
+        <h3>Traversal Sections</h3>
+        <ol type="a">
+            <li>Lead up to bridge puzzle</li>
+            <li>Optional risky movement collectible challenge</li>
+            <li>Climb up to bubblegum block and laser drop</li>
+            <li>Hidden door to yarn</li>
+            <li>Simple bomb block parkour leading up to conveyor belt timing challenge</li>
+            <li>Path (d) merges into path (e)</li>
+            <li>Simple climb to Grenade Enemy</li>
+            <li>Drop to finish</li>
+        </ol>
+
+        <h3>Bubble Map</h3>
+        <img src="images/bbt_bubble_map.png">
+
+        <h2>Initial Level Design Document</h2>
+        <iframe width="100%" height="800px" title="Initial Level Design Document" src="bbt_ldd_1.pdf"></iframe>
+
+        <h2>Final Build and Postmortem Document</h2>
+        <iframe src="bbt_ldd_2.pdf"></iframe>
     </main>
     <footer>
 
